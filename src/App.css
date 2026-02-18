@@ -1,0 +1,26 @@
+/* Estilos customizados complementares ao Tailwind */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cart-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.overlay-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.font-japonesa {
+  font-family: 'Noto Serif JP', serif;
+}
