@@ -13,7 +13,7 @@ export function Navbar() {
             <h1 className="font-japonesa text-white font-bold text-xl leading-none tracking-wide">
               Sakura
             </h1>
-            <p className="font-japonesa text-red-500 text-xs tracking-widest uppercase">
+            <p className="text-red-500 text-xs tracking-widest uppercase">
               Japanese Restaurant
             </p>
           </div>

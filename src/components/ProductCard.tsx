@@ -16,11 +16,11 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden flex flex-col group hover:ring-1 hover:ring-red-500/50 transition-all duration-300">
       {/* Imagem */}
-      <div className={`relative overflow-hidden ${product.imageHeight ?? 'h-48'}`}>
+      <div className={`relative overflow-hidden h-48 ${!product.available ? 'grayscale' : ''}`}>
         <img
           src={product.image}
           alt={product.name}
-          className="w-[100%] h-[100%] object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {product.featured && (
           <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">

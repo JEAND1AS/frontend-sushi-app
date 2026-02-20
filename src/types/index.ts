@@ -8,15 +8,16 @@ export type Category =
   | 'Sobremesas';
 
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
   image: string;
-  imageHeight?: string;
-  category: Category;
+  category: string;
+  featured: boolean;
   available: boolean;
-  featured?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface CartItem {
