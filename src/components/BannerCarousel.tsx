@@ -27,7 +27,7 @@ const slides: Slide[] = [
         image: 'https://images.unsplash.com/photo-1583623025817-d180a2221d0a?w=1600&q=80',
         tag: 'Oferta especial',
         title: 'Promoção da semana',
-        titleHighlight: '20% OFF',
+        titleHighlight: 'Entrega grátis acima de R$ 150,00 reais',
         description: 'Use o cupom SAKURA20 no seu primeiro pedido e ganhe desconto especial!',
         buttonText: 'Pedir Agora',
         buttonLink: '#menu',

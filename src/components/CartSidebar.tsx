@@ -1,8 +1,10 @@
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
 export function CartSidebar() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, total, clearCart } = useCart();
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -94,7 +96,10 @@ export function CartSidebar() {
             </p>
             <button
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl transition-colors"
-              onClick={() => alert('Integração com checkout em breve!')}
+              onClick={() => {
+                closeCart();
+                navigate('/checkout');
+              }}
             >
               Finalizar Pedido
             </button>
