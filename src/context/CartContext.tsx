@@ -8,8 +8,8 @@ interface CartState {
 
 type CartAction =
   | { type: 'ADD_ITEM'; product: Product }
-  | { type: 'REMOVE_ITEM'; productId: string }
-  | { type: 'UPDATE_QUANTITY'; productId: string; quantity: number }
+  | { type: 'REMOVE_ITEM'; productId: number }
+  | { type: 'UPDATE_QUANTITY'; productId: number; quantity: number }
   | { type: 'CLEAR_CART' }
   | { type: 'OPEN_CART' }
   | { type: 'CLOSE_CART' };
@@ -20,8 +20,8 @@ interface CartContextValue {
   itemCount: number;
   total: number;
   addItem: (product: Product) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  removeItem: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
   openCart: () => void;
   closeCart: () => void;
