@@ -20,7 +20,7 @@ export function CategoryFilter({ selected, onChange }: CategoryFilterProps) {
     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
       <button
         onClick={() => onChange('Todos')}
-        className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+        className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
           selected === 'Todos'
             ? 'bg-red-600 text-white'
             : 'bg-white/10 text-gray-300 hover:bg-white/20'
@@ -32,7 +32,7 @@ export function CategoryFilter({ selected, onChange }: CategoryFilterProps) {
         <button
           key={cat}
           onClick={() => onChange(cat)}
-          className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+          className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
             selected === cat
               ? 'bg-red-600 text-white'
               : 'bg-white/10 text-gray-300 hover:bg-white/20'
