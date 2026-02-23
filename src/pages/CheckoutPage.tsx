@@ -90,16 +90,30 @@ export function CheckoutPage() {
 
         setLoadingCep(true);
         try {
-            const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+            // Adicionar timeout para segurança
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+            const response = await fetch(
+                `https://viacep.com.br/ws/${cleanCep}/json/`,
+                { signal: controller.signal }
+            );
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error('Erro ao buscar CEP');
+            }
+
             const data = await response.json();
 
-            if (!data.erro) {
+            if (!data.erro && typeof data === 'object') {
+                // Validar e sanitizar dados recebidos
                 setAddressData(prev => ({
                     ...prev,
-                    street: data.logradouro,
-                    neighborhood: data.bairro,
-                    city: data.localidade,
-                    state: data.uf,
+                    street: String(data.logradouro || ''),
+                    neighborhood: String(data.bairro || ''),
+                    city: String(data.localidade || ''),
+                    state: String(data.uf || ''),
                 }));
             }
         } catch (error) {
@@ -215,7 +229,7 @@ export function CheckoutPage() {
                                 <div>
                                     <label className="text-gray-400 text-sm block mb-2">CEP</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         value={addressData.cep}
                                         onChange={(e) => {
                                             const value = e.target.value.replace(/\D/g, '').slice(0, 8);
@@ -232,7 +246,7 @@ export function CheckoutPage() {
                                 <div>
                                     <label className="text-gray-400 text-sm block mb-2">Rua</label>
                                     <input
-                                        type="text"
+                                            type="text"
                                         value={addressData.street}
                                         onChange={(e) => setAddressData(prev => ({ ...prev, street: e.target.value }))}
                                         className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500"
@@ -243,7 +257,7 @@ export function CheckoutPage() {
                                     <div>
                                         <label className="text-gray-400 text-sm block mb-2">Número</label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             value={addressData.number}
                                             onChange={(e) => setAddressData(prev => ({ ...prev, number: e.target.value }))}
                                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500"
@@ -274,7 +288,7 @@ export function CheckoutPage() {
                                     <div>
                                         <label className="text-gray-400 text-sm block mb-2">UF</label>
                                         <input
-                                            type="text"
+                                                type="text"
                                             value={addressData.state}
                                             onChange={(e) => setAddressData(prev => ({ ...prev, state: e.target.value.toUpperCase().slice(0, 2) }))}
                                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500"

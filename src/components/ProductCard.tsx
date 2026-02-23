@@ -13,6 +13,11 @@ export function ProductCard({ product }: ProductCardProps) {
     openCart();
   }
 
+  // Sanitizar valores para exibição segura
+  const safePrice = Number.isFinite(product.price) && product.price >= 0 
+    ? product.price.toFixed(2).replace('.', ',') 
+    : '0,00';
+
   return (
     <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden flex flex-col group hover:ring-1 hover:ring-red-500/50 transition-all duration-300">
       {/* Imagem */}
@@ -47,7 +52,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </p>
         <div className="flex items-center justify-between mt-auto">
           <span className="text-white font-bold text-lg">
-            R$ {product.price.toFixed(2).replace('.', ',')}
+            R$ {safePrice}
           </span>
           <button
             onClick={handleAdd}

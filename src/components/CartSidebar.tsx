@@ -6,6 +6,13 @@ export function CartSidebar() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, total, clearCart } = useCart();
   const navigate = useNavigate();
 
+  // Sanitizar valores para exibição segura
+  const formatPrice = (price: number): string => {
+    return Number.isFinite(price) && price >= 0 
+      ? price.toFixed(2).replace('.', ',') 
+      : '0,00';
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -50,7 +57,7 @@ export function CartSidebar() {
                 <div className="flex-1 min-w-0">
                   <h4 className="text-white text-sm font-semibold truncate">{item.product.name}</h4>
                   <p className="text-red-400 text-sm font-medium mt-0.5">
-                    R$ {item.product.price.toFixed(2).replace('.', ',')}
+                    R$ {formatPrice(item.product.price)}
                   </p>
                   {/* Quantity controls */}
                   <div className="flex items-center gap-2 mt-2">
@@ -88,7 +95,7 @@ export function CartSidebar() {
             <div className="flex items-center justify-between">
               <span className="text-gray-400">Subtotal</span>
               <span className="text-white font-bold text-lg">
-                R$ {total.toFixed(2).replace('.', ',')}
+                R$ {formatPrice(total)}
               </span>
             </div>
             <p className="text-gray-600 text-xs">

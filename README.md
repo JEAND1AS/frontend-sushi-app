@@ -243,7 +243,38 @@ A cor principal do projeto é **vermelho** (`red-600`). Para trocar a identidade
 
 ---
 
-## 🛠️ Tecnologias
+## � Segurança
+
+Este projeto implementa várias práticas de segurança recomendadas:
+
+### ✅ Implementadas
+
+- **Validação de Dados**: Todos os dados da API são validados antes de serem utilizados
+- **Sanitização de Parâmetros**: URLs e parâmetros são sanitizados com `encodeURIComponent`
+- **Timeout em Requisições**: Timeout de 10s para prevenir requisições travadas
+- **Tratamento de Erros**: Try-catch em todas as requisições com retorno seguro
+- **Content Security Policy (CSP)**: Meta tag CSP configurada no HTML
+- **Variáveis de Ambiente**: URL da API configurável via `.env`
+- **Validação de Tipos**: TypeScript + validação runtime de dados
+- **Prevenção XSS**: React escapa automaticamente valores em JSX
+
+### 📝 Detalhes
+
+Para mais informações sobre as implementações de segurança, consulte:
+- [SECURITY.md](./SECURITY.md) - Documentação completa de segurança
+- [.env.example](./.env.example) - Exemplo de configuração de ambiente
+
+### 🚀 Em Produção
+
+Ao fazer deploy, certifique-se de:
+1. Configurar `VITE_API_BASE_URL` com a URL HTTPS da API
+2. Habilitar HTTPS na hospedagem
+3. Configurar CORS no backend para aceitar apenas seu domínio
+4. Revisar e ajustar o CSP conforme necessário
+
+---
+
+## �🛠️ Tecnologias
 
 | Tecnologia | Versão | Uso |
 |-----------|--------|-----|
