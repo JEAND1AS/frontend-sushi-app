@@ -229,7 +229,7 @@ export function CheckoutPage() {
                                 <div>
                                     <label className="text-gray-400 text-sm block mb-2">CEP</label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         value={addressData.cep}
                                         onChange={(e) => {
                                             const value = e.target.value.replace(/\D/g, '').slice(0, 8);
@@ -257,7 +257,7 @@ export function CheckoutPage() {
                                     <div>
                                         <label className="text-gray-400 text-sm block mb-2">Número</label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             value={addressData.number}
                                             onChange={(e) => setAddressData(prev => ({ ...prev, number: e.target.value }))}
                                             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500"
